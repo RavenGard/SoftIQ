@@ -1,4 +1,8 @@
 {
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "@apollo/server": "^4.3.3",
     "dotenv": "^16.0.3",
