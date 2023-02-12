@@ -43,3 +43,20 @@ const typeDefs = `
         notes: String!
     }   
 `
+const resolvers = {
+    Query: {
+        getUser: async(_, {id}, {db}) => {
+            return await db.collection('User').findOne({ _id: ObjectId(id)});
+        },
+        getOverallFeedback: async(_,{id}, {db} ) => {
+            
+            const feebackList = db.collection("OverallFeedback").findOne
+            return await db.collection("OverallFeedback").findOne({ _id: ObjectId(id) });
+        },
+        
+        // getQuestion: async(_, {id}, {db}) => {
+        //     return await db.collection
+        // }
+
+    }
+}
