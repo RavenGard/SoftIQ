@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
+
 export const Nav = () => {
   return (
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <svg
           class="fill-current h-8 w-8 mr-2"
@@ -26,7 +27,7 @@ export const Nav = () => {
           </svg>
         </button>
       </div>
-      
+
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="flex justify-end text-sm lg:flex-grow">
           <a
@@ -35,24 +36,30 @@ export const Nav = () => {
           >
             STAR Category
           </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Tips
-          </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Feedback
-          </a>
-          <a
-            href="#responsive-header"
-            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-          >
-            Contact
-          </a>
+          <Link to={"/tips"}>
+            <a
+              href="#responsive-header"
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            >
+              Tips
+            </a>
+          </Link>
+          <Link to={"/feedback"}>
+            <a
+              href="#responsive-header"
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            >
+              Feedback
+            </a>
+          </Link>
+          <Link to={"/contact"}>
+            <a
+              href="#responsive-header"
+              class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+            >
+              Contact
+            </a>
+          </Link>
         </div>
         <div>
           <a
@@ -63,7 +70,6 @@ export const Nav = () => {
           </a>
         </div>
       </div>
-      
     </nav>
   );
 };
