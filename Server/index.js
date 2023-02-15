@@ -30,7 +30,7 @@ const typeDefs = `
     }
     type Question {
         questionID: ID!
-        starCategory: String!
+        starCategory: Boolean!
         questionDescription: String!
         difficulty: String!
         notes: String
