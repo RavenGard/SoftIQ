@@ -1,5 +1,6 @@
 import LoginButton from "../auth/SignIn";
 import LogoutButton from "../auth/SignOut";
+import Profile from "../Components/Profile/Profile";
 
 export const Dashboard = () => {
   return (
@@ -8,6 +9,7 @@ export const Dashboard = () => {
       <LoginButton>Log In</LoginButton>
       <br></br>
       <LogoutButton>Log Out</LogoutButton>
+      <Profile />
     </div>
   );
 };
