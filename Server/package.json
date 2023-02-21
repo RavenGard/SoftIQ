@@ -1,12 +1,17 @@
 {
+  "name": "softiq",
+  "version": "1.0.0",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "@apollo/server": "^4.3.3",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
-    "mongodb": "^5.0.1"
+    "mongodb": "^5.0.1",
+    "nodemon": "^2.0.20"
   }
 }
