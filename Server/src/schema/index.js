@@ -26,9 +26,9 @@ module.exports = buildSchema(`
     }
 
     type Feedback {
-        feedbackID: ID!
-        userID: ID!
-        questionID: ID!
+        _id: ID!
+        user: User!
+        question: Question!
         score: Int!
         category: String!
         questionRating: Int!
@@ -79,13 +79,34 @@ module.exports = buildSchema(`
         tips: [String!] 
     }
 
+    input UserInput {
+        firstName: String!
+        lastName: String!
+        email: String!
+        userName: String!
+        password: String
+        interviewLevel: String!
+        workingOn: String!
+        customerFacing: Boolean!
+        practiceCounter: Int
+        streakCounter: Int
+    }
+
+    input FeedbackInput {
+        score: Int!
+        category: String!
+        questionRating: Int!
+    }
+
     type RootQuery {
         getQuestions: [Question!]!
+        getFeedback: [Feedback!]!
     }
 
     type RootMutation {
         createQuestion(questionInput: QuestionInput): Question
-         createUser(userInput: UserInput): User!
+        createUser(userInput: UserInput): User!
+        createFeedback(feedbackInput: FeedbackInput): Feedback
     }
 
     schema {

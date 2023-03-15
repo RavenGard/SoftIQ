@@ -18,5 +18,15 @@ const transformQuestion = question => {
   };
 };
 
+const transformFeedback = feedback => {
+  return {
+    ...feedback._doc,
+    _id: feedback.id,
+    user: user.bind(this, feedback._doc.user),
+    question: questions.bind(this, feedback._doc.question)
+  };
+};
+
 exports.transformQuestion = transformQuestion;
+exports.transformFeedback = transformFeedback;
 
