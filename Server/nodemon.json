@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "User",
+        "MONGO_PASSWORD": "user",
+        "MONGO_DB": "softiq"
+    }
+}
