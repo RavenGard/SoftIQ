@@ -12,13 +12,14 @@ module.exports = buildSchema(`
     }
 
     type User {
-        userID: ID!
-        userName: String!
-        password: String!
+        _id: ID!
         firstName: String!
         lastName: String!
         email: String!
+        userName: String!
+        password: String
         interviewLevel: String!
+        workingOn: String!
         customerFacing: Boolean!
         practiceCounter: Int
         streakCounter: Int
@@ -61,9 +62,9 @@ module.exports = buildSchema(`
         email: String!
         userName: String!
         password: String!
-        experience: WorkExperience!
-        workingOn: WorkingOn!
-        customerFacing: CustomerFacing!
+        interviewLevel: String!
+        workingOn: String!
+        customerFacing: Boolean!
     }
 
     input SignIn {
@@ -84,6 +85,7 @@ module.exports = buildSchema(`
 
     type RootMutation {
         createQuestion(questionInput: QuestionInput): Question
+         createUser(userInput: UserInput): User!
     }
 
     schema {
