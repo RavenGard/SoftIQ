@@ -1,6 +1,3 @@
-import LoginButton from "../auth/SignIn";
-import LogoutButton from "../auth/SignOut";
-import SignuptButton from "../auth/SignUp";
 import Profile from "../Components/Profile/Profile";
 import demoData from "../assets/demoDataPic.jpg";
 
@@ -52,20 +49,14 @@ export const Dashboard = () => {
         </div>
         <div class="px-4 py-6 sm:px-0">
           <div class="flex justify-center items-center mb-4">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              <SignuptButton />
-            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
           </div>
           <div class="flex justify-center items-center mb-4">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              <LoginButton />
-            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
           </div>
 
           <div class="flex justify-center items-center mb-8">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              <LogoutButton />
-            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
           </div>
           <Profile />
         </div>
