@@ -3,7 +3,6 @@ const User = require('../models/user');
 const Question = require('../models/question');
 
 const { transformFeedback } = require('./merge');
-const question = require('../models/question');
 
 module.exports = {
   getFeedback: async () => {
@@ -18,7 +17,7 @@ module.exports = {
     },
     createFeedback: async args => {
         const fetchedUser = await User.findOne({ _id: args.userId });
-        const fetchedQuestion = await Question.findOne({ _id: args.ObjectId});
+        const fetchedQuestion = await Question.findOne({ _id: args.questionId});
 
         const feedback = new Feedback({
             user: fetchedUser,
@@ -27,7 +26,7 @@ module.exports = {
             category: args.feedbackInput.category,
             questionRating: args.feedbackInput.questionRating
         });
-        console.log("This is the fetched question: " + fetchedQuestion);
+        // console.log("This is the fetched question: " + fetchedQuestion);
         let createdFeedback;
         try {
           const result = await feedback.save();

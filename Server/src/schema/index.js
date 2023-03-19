@@ -106,7 +106,7 @@ module.exports = buildSchema(`
     type RootMutation {
         createQuestion(questionInput: QuestionInput): Question
         createUser(userInput: UserInput): User!
-        createFeedback(feedbackInput: FeedbackInput): Feedback
+        createFeedback(feedbackInput: FeedbackInput, userId: ID!, questionId: ID!): Feedback
     }
 
     schema {
