@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Nav = () => {
   return (
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 bg-opacity-75 p-6">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <svg
           class="fill-current h-8 w-8 mr-2"
@@ -27,7 +27,6 @@ export const Nav = () => {
           </svg>
         </button>
       </div>
-
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto space-x-2">
         <div class="flex justify-end space-x-2 text-sm lg:flex-grow">
           <a
@@ -65,7 +64,6 @@ export const Nav = () => {
             </a>
           </Link>
         </div>
-
         <div>
           <a
             href="#"
