@@ -18,7 +18,6 @@ export const Dashboard = () => {
               allowfullscreen
             ></iframe>
           </div>
-
           <div class="bg-white rounded-lg shadow px-4 py-5 sm:p-6 mb-8">
             <h2 class="text-lg font-medium leading-6 text-gray-900">
               Track your scores and review your feedback!
