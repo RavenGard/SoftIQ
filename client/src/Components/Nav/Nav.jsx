@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export const Nav = () => {
   return (
     <nav class="flex items-center justify-between flex-wrap bg-teal-500 bg-opacity-75 p-6">
+
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <svg
           class="fill-current h-8 w-8 mr-2"
@@ -73,6 +74,7 @@ export const Nav = () => {
           </a>
         </div>
       </div>
+      
     </nav>
   );
 };
