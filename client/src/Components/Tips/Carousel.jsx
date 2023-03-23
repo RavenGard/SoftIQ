@@ -1,78 +1,121 @@
 import React from "react";
+import { Fragment, useState } from "react";
+import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
 // import demoData from "../images/demodata.jpg";
 // import images from "client\src\assets\demoDataPic.jpg";
 
 
 //let image = "https://www.searchenginejournal.com/wp-content/uploads/2019/07/the-essential-guide-to-using-images-legally-online.png";
 
+function Icon({ id, open }) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={`${
+          id === open ? "rotate-180" : ""
+        } h-5 w-5 transition-transform`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    );
+}
+
 const Carousel = () => {
+
+    const [open, setOpen] = useState(1);
+ 
+    const handleOpen = (value) => {
+        setOpen(open === value ? 0 : value);
+    };
 
     return (
 
-        <div class="flex-col justify-center space-y-10 ">
-            <a href="#" class="flex flex-col justify-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <div class="flex flex-col justify-center p-10 leading-normal">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Interview Prep</h5>
+        <div>
+
+            <div class="flex flex-col w-full space-y-10 pt-8">
+                
+                <a href="#" class="flex justify-center w-full bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <div class="justify-center p-10 leading-normal ite">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Interview Prep</h5>
+                    </div>
+                </a>
+                <a href="#" class=" flex justify-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <div class="justify-between p-10 leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">During the Interview</h5>
+                    </div>
+                </a>
+
+            </div>
+
+
+            <div id="accordion-collapse" data-accordion="collapse" class= " flex flex-col pt-14 items-center" >
+
+                <Fragment>
+                    <Accordion open={open===1} icon={<Icon id={1} open={open} />} class ="mb-2 justify-between px-5 py-5 w-full font-medium text-left text-gray-500 border border-b-1 border-gray-200 rounded-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <AccordionHeader onClick={() => handleOpen(1)}>
+                            What is Flowbite?
+                        </AccordionHeader>
+
+                        <AccordionBody>
+                            Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.
+                        </AccordionBody>
+                    </Accordion>
+                </Fragment>
+
+                <h2 id="accordion-collapse-heading-1" class = "py-2 px-2 w-9/12">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-1 border-gray-200 rounded-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+                    <span>What is Flowbite?</span>
+                    <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+
+                <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+                    <div class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
+                    <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="flex flex-col justify-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                <div class="flex flex-col justify-between p-10 leading-normal">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">During the Interview</h5>
+
+                <h2 id="accordion-collapse-heading-2" class = "py-2 px-2 w-9/12">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border rounded-md border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+                    <span>Is there a Figma file available?</span>
+                    <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+
+                <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+                    <div class="p-5 font-light border border-b-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
+                    <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classes from Tailwind CSS and components from Flowbite.</p>
+                    </div>
                 </div>
-            </a>
-        </div>
 
+                <h2 id="accordion-collapse-heading-3">
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+                    <span>What are the differences between Flowbite and Tailwind UI?</span>
+                    <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </h2>
+
+                <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+                    <div class="p-5 font-light border border-t-0 border-gray-200 dark:border-gray-700">
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
+                        <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+                        <ul class="pl-5 text-gray-500 list-disc dark:text-gray-400">
+                            <li><a href="https://flowbite.com/pro/" class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
+                            <li><a href="https://tailwindui.com/" rel="nofollow" class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>   
         
-        // <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Blue</button>    
-        // <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Green</button>
-        
-        // <div id="default-carousel" class="relative w-full" data-carousel="slide">
-
-        //     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        //         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-
-        //             <img src= {image} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        //             {/* <p class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">Dummy data 1</p> */}
-        //         </div>
-        //         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-        //             <p >Tip 2</p>
-        //         </div>
-        //         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-        //             <p>I can see tip 3</p>
-        //         </div>
-        //         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-        //             <p>tip 4</p>
-        //         </div>
-        //         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-        //             <p>tip 5</p>
-        //         </div>
-        //     </div>
-
-        //     <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-        //         <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        //         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        //         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-        //         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        //         <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-        //     </div>
-
-        //     <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        //         <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        //             <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-        //             <span class="sr-only">Previous</span>
-        //         </span>
-        //     </button>
-            
-        //     <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        //         <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-        //             <svg aria-hidden="true" class="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        //             <span class="sr-only">Next</span>
-        //         </span>
-        //     </button>
-
-        // </div>
-          
     );
 };
-
 export default Carousel;
