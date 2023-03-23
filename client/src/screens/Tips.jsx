@@ -5,7 +5,8 @@ export const Tips = () => {
     return (
         <div>
             <Carousel /> 
-            <div class=" flex justify-center pt-4">
+            <div class=" flex flex-col justify-center">
+                <TipAccordion />  
                 <TipAccordion />  
             </div>
             
