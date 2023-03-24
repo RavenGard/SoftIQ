@@ -1,60 +1,95 @@
-import React from "react";
-import { Fragment, useState } from "react";
-import { Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
-// import demoData from "../images/demodata.jpg";
-// import images from "client\src\assets\demoDataPic.jpg";
+import React, { Component } from "react";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { CarouselData } from "../../assets/carouselData";
 
+class Carousel extends Component {
 
-//let image = "https://www.searchenginejournal.com/wp-content/uploads/2019/07/the-essential-guide-to-using-images-legally-online.png";
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentSlide: 0,
+    };
+  }
 
-function Icon({ id, open }) {
+  componentDidMount() {
+    setInterval(() => {
+      if (this.state.paused === false) {
+        let newSlide =
+          this.state.currentSlide === CarouselData.length - 1
+            ? 0
+            : this.state.currentSlide + 1;
+        this.setState({ currentSlide: newSlide });
+      }
+    }, 3000);
+  }
+
+  nextSlide = () => {
+    let newSlide =
+      this.state.currentSlide === CarouselData.length - 1
+        ? 0
+        : this.state.currentSlide + 1;
+    this.setState({ currentSlide: newSlide });
+  };
+  
+  prevSlide = () => {
+    let newSlide =
+      this.state.currentSlide === 0
+        ? CarouselData.length - 1
+        : this.state.currentSlide - 1;
+    this.setState({ currentSlide: newSlide });
+  };
+
+  setCurrentSlide = (index) => {
+    this.setState({ currentSlide: index });
+  };
+
+  render() {
     return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={`${
-          id === open ? "rotate-180" : ""
-        } h-5 w-5 transition-transform`}
-        fill="none"
-        viewBox="24 24 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-      </svg>
+      <div className="mt-8">
+        <div className="max-w-lg h-72 flex overflow-hidden relative">
+        <AiOutlineLeft onClick={this.prevSlide} className='absolute left-0 text-3xl inset-y-1/2 text-white cursor-pointer' />
+         
+        {CarouselData.map((slide, index) => {
+              return (
+                <img
+                  src={slide.image}
+                  alt="This is a carousel slide"
+                  key={index}
+                  className={
+                    index === this.state.currentSlide
+                      ? "block w-full h-auto object-cover"
+                      : "hidden"
+                  }
+                  />
+                
+              );
+            })}
+
+        <div className="absolute w-full flex justify-center bottom-0">
+            {CarouselData.map((element, index) => {
+              return (
+                <div
+                  className={
+                    index === this.state.currentSlide
+                      ? "h-2 w-2 bg-blue-700 rounded-full mx-2 mb-2 cursor-pointer"
+                      : "h-2 w-2 bg-white rounded-full mx-2 mb-2 cursor-pointer"
+                  }
+                  key={index}
+                  onClick={() => {
+                    this.setCurrentSlide(index);
+                  }}
+                ></div>
+              );
+            })}
+          </div>
+
+
+        <AiOutlineRight onClick={this.nextSlide} className='absolute right-0 text-3xl inset-y-1/2 text-white cursor-pointer' />
+
+        </div>
+      </div>
     );
+  }
 }
 
-const Carousel = () => {
-
-    const [open, setOpen] = useState(1);
- 
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    };
-
-    return (
-
-        <div>
-
-            <div class="flex flex-col w-full space-y-10 pt-8">
-                
-                <a href="#" class="flex justify-center w-full bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <div class="justify-center p-10 leading-normal ite">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Interview Prep</h5>
-                    </div>
-                </a>
-                <a href="#" class=" flex justify-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <div class="justify-between p-10 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">During the Interview</h5>
-                    </div>
-                </a>
-
-            </div>
-
-
-            
-            </div>
-        
-    );
-};
 export default Carousel;
