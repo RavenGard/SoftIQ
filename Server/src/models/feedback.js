@@ -1,28 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const feedbackSchema = new Schema({
+const feedbackSchema = new Schema(
+  {
     user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     question: {
-        type: Schema.Types.ObjectId,
-        ref: 'Question'
+      type: Schema.Types.ObjectId,
+      ref: "Question",
     },
     score: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     category: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     questionRating: {
-        type: Number,
-        required: true
-    }
-});
+      type: Number,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Feedback', feedbackSchema);
+module.exports = mongoose.model("Feedback", feedbackSchema);

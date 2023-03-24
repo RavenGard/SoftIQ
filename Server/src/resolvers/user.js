@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/user");
+const crypto = require("crypto");
 
 module.exports = {
   createUser: async (args) => {
@@ -50,34 +50,36 @@ module.exports = {
   },
 
   login: async ({ email, password }) => {
-    const user = await User.findOne({ email: email });
+    try {
+      const user = await User.findOne({ email: email });
 
-    if (!user) {
-      throw new error("User does not exist!");
-    }
-
-    const isEqual = await bcrypt.compare(password, user.password);
-
-    if (!isEqual) {
-      throw new Error("Password is incorrect!");
-    }
-
-    const crypto = require("crypto");
-
-    const generateSecretKey = () => {
-      const secret = crypto.randomBytes(32).toString("base64");
-      return secret;
-    };
-
-    const newSecretKey = generateSecretKey();
-
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      newSecretKey,
-      {
-        expiresIn: "12h",
+      if (!user) {
+        throw new error("Invalid credentials.");
       }
-    );
-    return { userId: user.id, token: token, tokenExpiration: 1 };
+
+      const isEqual = await bcrypt.compare(password, user.password);
+
+      if (!isEqual) {
+        throw new Error("Invalid credentials.");
+      }
+
+      const generateSecretKey = () => {
+        const secret = crypto.randomBytes(64).toString("hex");
+        return secret;
+      };
+
+      const newSecretKey = generateSecretKey();
+
+      const token = jwt.sign(
+        { userId: user.id, email: user.email },
+        newSecretKey,
+        {
+          expiresIn: "2d",
+        }
+      );
+      return { userId: user.id, token: token, tokenExpiration: 48 };
+    } catch (err) {
+      throw err;
+    }
   },
 };
