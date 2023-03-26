@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 
-const CardsComponent () => {
+// const CardsComponent () => {
 
-};
+// };
 
-export default CardsComponent;
+// export default CardsComponent;
