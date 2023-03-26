@@ -16,7 +16,7 @@ const feedbackSchema = new Schema(
       type: Number,
       required: true,
     },
-    category: {
+    title: {
       type: String,
       required: true,
     },

@@ -32,7 +32,7 @@ module.exports = buildSchema(`
         user: User!
         question: Question!
         score: Int!
-        category: String!
+        title: String!
         questionRating: Int!
         createdAt: String!
     }
