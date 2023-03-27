@@ -28,12 +28,6 @@ module.exports = {
         throw new Error("User exists already.");
       }
 
-      const sameUserName = await User.findOne({ userName });
-
-      if (sameUserName) {
-        throw new Error("User name exists already.");
-      }
-
       const hashedPassword = await bcrypt.hash(password, 12);
 
       const newUser = new User({
