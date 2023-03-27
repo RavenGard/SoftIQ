@@ -23,6 +23,7 @@ module.exports = buildSchema(`
         interviewLevel: String!
         workingOn: String!
         customerFacing: Boolean!
+        initials: String!
         practiceCounter: Int
         streakCounter: Int
     }
@@ -41,6 +42,10 @@ module.exports = buildSchema(`
         userId: ID!
         token: String!
         tokenExpiration: Int!
+    }
+
+    type Initials {
+        initials: String!
     }
 
     #need enums for specific feedback as well
@@ -94,6 +99,7 @@ module.exports = buildSchema(`
     type RootQuery {
         getQuestions: [Question!]!
         getFeedback: [Feedback!]!
+        getInitials(userId: ID!): Initials
         login(email: String!, password: String!): AuthData
     }
 

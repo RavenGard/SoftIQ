@@ -1,6 +1,49 @@
 import { Link } from "react-router-dom";
+import authContext from "../../context/auth-context";
+import { useState, useContext, useEffect } from "react";
 
 export const Nav = () => {
+  const context = useContext(authContext);
+
+  const userId = context.userId;
+  const token = context.token;
+  const [initials, setInitials] = useState("");
+
+  useEffect(() => {
+    let requestBody = {
+      query: `
+        query {
+          getInitials(userId: "${userId}") {
+            initials
+          }
+        }
+      `,
+    };
+
+    console.log("HERE " + userId);
+
+    fetch("http://localhost:3000/softiq", {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error("Failed!");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        console.log(resData);
+        setInitials(resData.data.getInitials.initials);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userId]);
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 bg-opacity-75 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -63,14 +106,7 @@ export const Nav = () => {
               Contact
             </a>
           </Link>
-        </div>
-        <div>
-          <a
-            href="#"
-            className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full font-medium text-white dark:bg-gray-600  hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-          >
-            JN
-          </a>
+          <div className="font-sans">{initials}</div>
         </div>
         <button
           type="button"
