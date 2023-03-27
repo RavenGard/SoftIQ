@@ -2,6 +2,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const crypto = require("crypto");
+const { ObjectId } = require("mongodb");
+
+const initials = (firstName, lastName) => {
+  return firstName.charAt(0) + lastName.charAt(0);
+};
 
 module.exports = {
   createUser: async (args) => {
@@ -28,7 +33,15 @@ module.exports = {
         throw new Error("User exists already.");
       }
 
+      const sameUserName = await User.findOne({ userName });
+
+      if (sameUserName) {
+        throw new Error("User name exists already.");
+      }
+
       const hashedPassword = await bcrypt.hash(password, 12);
+
+      const userInitials = initials(firstName, lastName);
 
       const newUser = new User({
         firstName,
@@ -39,11 +52,36 @@ module.exports = {
         interviewLevel,
         workingOn,
         customerFacing,
+        initials: userInitials,
       });
 
       const result = await newUser.save();
 
       return { ...result._doc, password: null, _id: result.id };
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  getInitials: async (args) => {
+    try {
+      const id = new ObjectId(args.userId);
+
+      const user = await User.findOne({ _id: id });
+
+      if (!user) {
+        throw new Error("User not found.");
+      }
+
+      const initials = user.initials;
+
+      if (!initials) {
+        throw new Error("Initials not found.");
+      }
+
+      console.log("Initials: " + initials);
+
+      return { initials: initials };
     } catch (err) {
       throw err;
     }

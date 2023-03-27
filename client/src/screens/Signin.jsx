@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import interviewImage from "../assets/job-interview.png";
-import AuthContext from "../context/auth-context";
+import authContext from "../context/auth-context";
 import { useRef, useState, useContext } from "react";
 
 export const Signin = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(authContext);
 
   const [token, setToken] = useState(context.token);
 

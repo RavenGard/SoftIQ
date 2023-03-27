@@ -35,6 +35,10 @@ const userSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  initials: {
+    type: String,
+    required: true,
+  },
   practiceCounter: {
     type: Number,
     required: false,
