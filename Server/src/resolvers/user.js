@@ -28,6 +28,12 @@ module.exports = {
         throw new Error("User exists already.");
       }
 
+      const sameUserName = await User.findOne({ userName });
+
+      if (sameUserName) {
+        throw new Error("User name exists already.");
+      }
+
       const hashedPassword = await bcrypt.hash(password, 12);
 
       const newUser = new User({
@@ -52,6 +58,8 @@ module.exports = {
   login: async ({ email, password }) => {
     try {
       const user = await User.findOne({ email: email });
+
+      // Entering in wrong email but not getting Invalid credentials error.
 
       if (!user) {
         throw new error("Invalid credentials.");
