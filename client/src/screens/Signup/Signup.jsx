@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
-import interviewImage from "../assets/job-interview.png";
+import interviewImage from "../../assets/job-interview.png";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const Signup = () => {
+const Signup = () => {
+  const [passwordFailed, setPasswordFailed] = useState(false);
   const [customerFacing, setCustomerFacing] = useState(false);
-
-  const test = true;
+  const navigate = useNavigate();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -25,17 +25,23 @@ export const Signup = () => {
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
     const userName = userNameRef.current.value;
-    const interviewLevel = userNameRef.current.value;
-    const workingOn = userNameRef.current.value;
+    const interviewLevel = interviewLevelRef.current.value;
+    const workingOn = workingOnRef.current.value;
+
+    if (password !== repeatPassword) {
+      setPasswordFailed(true);
+      return;
+    }
 
     if (email.trim().length === 0 || password.trim().length === 0) {
       return;
     }
 
+    // Changes made to fix error. Changed line 37 from mutation to query.
     let requestBody = {
-      mutation: `
+      query: `
       mutation {
-        createUser(userInput: {firstName: "${firstName}", lastName: "${lastName}", email: "${email}", userName:"${userName}", password: "${password}", interviewLevel: "${interviewLevel}", workingOn: "${workingOn}", customerFacing: ${test}}) {
+        createUser(userInput: {firstName: "${firstName}", lastName: "${lastName}", email: "${email}", userName: "${userName}", password: "${password}", interviewLevel: "${interviewLevel}", workingOn: "${workingOn}", customerFacing: ${customerFacing}}) {
             email
             firstName
             lastName
@@ -59,8 +65,9 @@ export const Signup = () => {
       .then((res) => {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error("Failed!");
+        } else {
+          navigate("/signin");
         }
-        return res.json();
       })
       .catch((err) => {
         console.log(err);
@@ -73,7 +80,7 @@ export const Signup = () => {
         <h1 className="text-5xl font-extrabold text-slate-600 mb-2 py-8">
           SoftIQ
           <small className="ml-2 font-semibold text-gray-500 dark:text-gray-400">
-            Your AI companion for your soft skill interviews.
+            Your AI companion htmlFor your soft skill interviews.
           </small>
         </h1>
         <form onSubmit={submitHandler}>
@@ -88,7 +95,7 @@ export const Signup = () => {
               ref={emailRef}
             />
             <label
-              for="floating_email"
+              htmlFor="floating_email"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Email address
@@ -105,7 +112,7 @@ export const Signup = () => {
               ref={passwordRef}
             />
             <label
-              for="floating_password"
+              htmlFor="floating_password"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Password
@@ -122,7 +129,7 @@ export const Signup = () => {
               ref={repeatPasswordRef}
             />
             <label
-              for="floating_repeat_password"
+              htmlFor="floating_repeat_password"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Confirm password
@@ -139,7 +146,7 @@ export const Signup = () => {
               ref={userNameRef}
             />
             <label
-              for="floating_phone"
+              htmlFor="floating_phone"
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               User name
@@ -157,7 +164,7 @@ export const Signup = () => {
                 ref={firstNameRef}
               />
               <label
-                for="floating_first_name"
+                htmlFor="floating_first_name"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 First name
@@ -174,7 +181,7 @@ export const Signup = () => {
                 ref={lastNameRef}
               />
               <label
-                for="floating_last_name"
+                htmlFor="floating_last_name"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Last name
@@ -191,7 +198,7 @@ export const Signup = () => {
                 ref={interviewLevelRef}
               />
               <label
-                for="floating_last_name"
+                htmlFor="floating_last_name"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Interview Level
@@ -208,40 +215,42 @@ export const Signup = () => {
                 ref={workingOnRef}
               />
               <label
-                for="floating_working_on"
+                htmlFor="floating_working_on"
                 className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Working On
               </label>
             </div>
 
-            <div class="flex items-center mb-4">
+            <div className="flex items-center mb-4">
               <input
                 id="default-radio-1"
                 type="radio"
                 value=""
                 name="default-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                onChange={() => setCustomerFacing(false)}
               />
               <label
-                for="default-radio-1"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="default-radio-1"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 My positions are not customer facing.
               </label>
             </div>
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input
                 checked
                 id="default-radio-2"
                 type="radio"
                 value=""
                 name="default-radio"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                onChange={() => setCustomerFacing(true)}
               />
               <label
-                for="default-radio-2"
-                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                htmlFor="default-radio-2"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 My positions are customer facing.
               </label>

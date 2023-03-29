@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import { useState } from "react";
 import AuthContext from "./context/auth-context";
 import { Nav } from "./Components/Nav/Nav";
@@ -8,8 +8,8 @@ import { Tips } from "./screens/Tips";
 import { LoggedInDash } from "./screens/LoggedInDash";
 import { Interview } from "./screens/Interview";
 import { Contact } from "./screens/Contact";
-import { Signin } from "./screens/Signin";
-import { Signup } from "./screens/Signup";
+import Signin from "./screens/Signin/Signin";
+import Signup from "./screens/Signup/Signup";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -28,7 +28,7 @@ function App() {
   const location = useLocation();
 
   return (
-    <div class="h-full w-full">
+    <div className="h-full w-full">
       <AuthContext.Provider value={{ token, userId, login, logout }}>
         <Nav />
         <Routes>

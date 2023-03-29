@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import interviewImage from "../assets/job-interview.png";
-import authContext from "../context/auth-context";
-import { useRef, useState, useContext } from "react";
+import interviewImage from "../../assets/job-interview.png";
+import authContext from "../../context/auth-context";
+import { useRef, useContext } from "react";
 
 export const Signin = () => {
   const context = useContext(authContext);
-
-  const [token, setToken] = useState(context.token);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -75,7 +73,7 @@ export const Signin = () => {
         <form onSubmit={submitHandler}>
           <div className="mb-6">
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Your email
@@ -91,7 +89,7 @@ export const Signin = () => {
           </div>
           <div className="mb-6">
             <label
-              for="password"
+              htmlFor="password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Your password
@@ -115,7 +113,7 @@ export const Signin = () => {
               />
             </div>
             <label
-              for="remember"
+              htmlFor="remember"
               className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Remember me
