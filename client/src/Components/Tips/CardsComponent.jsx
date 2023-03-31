@@ -1,7 +1,18 @@
-// import React from "react";
+import React from "react";
+import { tipsData } from "../../assets/tips";
 
-// const CardsComponent () => {
+const CardsComponent = () => {
 
-// };
+    {tipsData.map((data, key) => {
+        return (
+          <>
+            <div key={key}>{data.tipType}</div>
+            <div key={key}>{data.description}</div>
+          </>    
+        )
+      })
+    }
 
-// export default CardsComponent;
+};
+
+export default CardsComponent;

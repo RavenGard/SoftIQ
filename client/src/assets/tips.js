@@ -1,7 +1,7 @@
 export const tipsData = [
     {
         tipId: 1,
-        tipType: "Interview Prep",
+        tipType: "Interview Prep: ",
         description: "Research the company: " + 
         "Take the time to learn about the company you're " + 
         "interviewing with. Check out their website, " +
@@ -9,7 +9,7 @@ export const tipsData = [
     },
     {
         tipId: 2,
-        tipType: "Interview Prep",
+        tipType: "Interview Prep: ",
         description: "Dress appropriately: Make sure you "+
         "dress professionally for the interview. "+
         "This will show that you take the opportunity "+
@@ -17,7 +17,7 @@ export const tipsData = [
     },
     {
         tipId: 3,
-        tipType: "Interview Prep",
+        tipType: "Interview Prep: ",
         description: "Review the job description: "+
         "Make sure you understand the job requirements "+
         "and responsibilities. This will help you tailor"+
@@ -25,7 +25,7 @@ export const tipsData = [
     },
     {
         tipId: 4,
-        tipType: "Interview Prep",
+        tipType: "Interview Prep: ",
         description: "Practice common interview questions:"+
         " Review common interview questions and practice "+
         "your responses. This will help you feel more "+
@@ -33,7 +33,7 @@ export const tipsData = [
     },
     {
         tipId: 5,
-        tipType: "During the Interview",
+        tipType: "During the Interview: ",
         description: "Listen carefully: Pay close attention "+
         "to the interviewer's questions and listen carefully "+
         "to their responses. This will help you understand what "+
@@ -56,6 +56,54 @@ export const tipsData = [
     },
     {
         tipId: 8,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 9,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 10,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 11,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 12,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 13,
+        tipType: "During the Interview",
+        description: "Highlight your strengths: Use the interview as "+
+        "an opportunity to highlight your strengths and accomplishments. "+
+        "Provide specific examples of your skills and experiences, "+
+        "and explain how they relate to the job you're applying for."
+    },
+    {
+        tipId: 14,
         tipType: "During the Interview",
         description: "Highlight your strengths: Use the interview as "+
         "an opportunity to highlight your strengths and accomplishments. "+
