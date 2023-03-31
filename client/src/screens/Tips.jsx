@@ -8,7 +8,7 @@ export const Tips = () => {
       {/* <Cards /> */}
       <Carousel/>
       <div class=" flex flex-col justify-center">
-        <TipAccordion />
+        <TipAccordion/>
       </div>
     </div>
   );

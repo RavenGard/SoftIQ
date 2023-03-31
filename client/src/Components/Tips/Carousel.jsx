@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { CarouselData } from "../../assets/carouselData";
+import jobInterview from "../../assets/job-interview.png";
 
 class Carousel extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class Carousel extends Component {
         : this.state.currentSlide + 1;
     this.setState({ currentSlide: newSlide });
   };
-  
+
   prevSlide = () => {
     let newSlide =
       this.state.currentSlide === 0
@@ -47,25 +47,27 @@ class Carousel extends Component {
     return (
       <div className="mt-8">
         <div className="max-w-lg h-72 flex overflow-hidden relative">
-        <AiOutlineLeft onClick={this.prevSlide} className='absolute left-0 text-3xl inset-y-1/2 text-white cursor-pointer' />
-         
-        {CarouselData.map((slide, index) => {
-              return (
-                <img
-                  src={slide.image}
-                  alt="This is a carousel slide"
-                  key={index}
-                  className={
-                    index === this.state.currentSlide
-                      ? "block w-full h-auto object-cover"
-                      : "hidden"
-                  }
-                  />
-                
-              );
-            })}
+          <AiOutlineLeft
+            onClick={this.prevSlide}
+            className="absolute left-0 text-3xl inset-y-1/2 text-white cursor-pointer"
+          />
 
-        <div className="absolute w-full flex justify-center bottom-0">
+          {CarouselData.map((slide, index) => {
+            return (
+              <img
+                src={jobInterview}
+                alt="This is a carousel slide"
+                key={index}
+                className={
+                  index === this.state.currentSlide
+                    ? "block w-full h-auto object-cover"
+                    : "hidden"
+                }
+              />
+            );
+          })}
+
+          <div className="absolute w-full flex justify-center bottom-0">
             {CarouselData.map((element, index) => {
               return (
                 <div
@@ -83,9 +85,10 @@ class Carousel extends Component {
             })}
           </div>
 
-
-        <AiOutlineRight onClick={this.nextSlide} className='absolute right-0 text-3xl inset-y-1/2 text-white cursor-pointer' />
-
+          <AiOutlineRight
+            onClick={this.nextSlide}
+            className="absolute right-0 text-3xl inset-y-1/2 text-white cursor-pointer"
+          />
         </div>
       </div>
     );

@@ -40,6 +40,7 @@ const transformQuestion = question => {
   };
 };
 
+// probably have to transform question and user to return all user and question info to mongodb
 const transformFeedback = feedback => {
   return {
     ...feedback._doc,
