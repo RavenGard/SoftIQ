@@ -41,16 +41,20 @@ const TipAccordion = () => {
   const theAccordion = tipsData.map((data, key) => { 
   return (
     <div key={key}>
-        <div class=" flex flex-col items-center ">
-            <div class="flex items-center justify-between w-9/12 p-10 font-medium text-left text-gray-500 border border-b-1 border-gray-200 rounded-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-neutral-950 hover:text-white hover:bg-indigo-950 dark:hover:bg-gray-500">
+        <div class=" flex flex-col items-center">
+            <div class="flex items-center justify-between w-9/12 p-10  text-left text-gray-500 border border-b-1 border-gray-200 rounded-md focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-neutral-950 hover:text-white hover:bg-indigo-950 dark:hover:bg-gray-500">
 
               <Accordion open={open === data.tipId} icon={<Icon id={data.tipId} open={open} />}>
                 <AccordionHeader onClick={() => handleOpen(data.tipId)}>
-                  {data.tipTitle}
+                  <div className="text-2xl">
+                    {data.tipTitle}
+                  </div>
                 </AccordionHeader>
 
                 <AccordionBody>
-                  {data.description}
+                  <div className="text-lg">
+                    {data.description}
+                  </div>
                 </AccordionBody>
               </Accordion>
               </div>
