@@ -1,4 +1,4 @@
-const { buildSchema } = require('graphql')
+const { buildSchema } = require("graphql");
 
 // Relate question to Feedback schema
 
@@ -9,6 +9,8 @@ module.exports = buildSchema(`
         questionDescription: String!
         difficulty: String!
         tips: [String!]
+        createdAt: String!
+        updatedAt: String!
     }
 
     type User {
@@ -21,6 +23,7 @@ module.exports = buildSchema(`
         interviewLevel: String!
         workingOn: String!
         customerFacing: Boolean!
+        initials: String!
         practiceCounter: Int
         streakCounter: Int
     }
@@ -30,8 +33,19 @@ module.exports = buildSchema(`
         user: User!
         question: Question!
         score: Int!
-        category: String!
+        title: String!
         questionRating: Int!
+        createdAt: String!
+    }
+
+    type AuthData {
+        userId: ID!
+        token: String!
+        tokenExpiration: Int!
+    }
+
+    type Initials {
+        initials: String!
     }
 
     #need enums for specific feedback as well
@@ -55,22 +69,6 @@ module.exports = buildSchema(`
         NO
         UNSURE
     }
-
-    input SignUp {
-        firstName: String!
-        lastName: String!
-        email: String!
-        userName: String!
-        password: String!
-        interviewLevel: String!
-        workingOn: String!
-        customerFacing: Boolean!
-    }
-
-    input SignIn {
-        userName: String!
-        password: String!
-    } 
 
     input QuestionInput {
         starCategory: Boolean!
@@ -101,6 +99,8 @@ module.exports = buildSchema(`
     type RootQuery {
         getQuestions: [Question!]!
         getFeedback(userId: ID!, questionId: ID!): [Feedback]!
+        getInitials(userId: ID!): Initials
+        login(email: String!, password: String!): AuthData
     }
 
     type RootMutation {
@@ -113,5 +113,4 @@ module.exports = buildSchema(`
         query: RootQuery
         mutation: RootMutation
     }
-
 `);

@@ -45,7 +45,7 @@ module.exports = {
       user: fetchedUser,
       question: fetchedQuestion,
       score: args.feedbackInput.score,
-      category: args.feedbackInput.category,
+      title: args.feedbackInput.title,
       questionRating: args.feedbackInput.questionRating,
     });
     // console.log("This is the fetched question: " + fetchedQuestion);
