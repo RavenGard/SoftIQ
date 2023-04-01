@@ -1,5 +1,6 @@
 const Question = require('../models/question');
 const User = require('../models/user');
+// const Feedback = require('../models/feedback');
 
 const questions = async questionIds => {
   try {
@@ -20,6 +21,15 @@ const singleQuestion = async questionId => {
     throw err;
   }
 }
+
+// const singleFeedback = async feedbackId => {
+//   try{
+//     const feedback = await Feedback.findById(feedbackId);
+//     return transformFeedback(feedback);
+//   } catch (err) {
+//     throw err;
+//   }
+// }
 
 const user = async userId => {
   try {

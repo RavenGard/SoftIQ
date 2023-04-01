@@ -100,7 +100,7 @@ module.exports = buildSchema(`
 
     type RootQuery {
         getQuestions: [Question!]!
-        getFeedback(userId: ID!, questionId: ID!): Feedback
+        getFeedback(userId: ID!, questionId: ID!): [Feedback]!
     }
 
     type RootMutation {
