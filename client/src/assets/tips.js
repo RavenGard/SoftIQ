@@ -1,7 +1,8 @@
 export const tipsData = [
     {
         tipId: 1,
-        tipType: "Interview Prep: ",
+        tipType: "Interview Prep",
+        tipTitle: "Who are you interviewing with?",
         description: "Research the company: " + 
         "Take the time to learn about the company you're " + 
         "interviewing with. Check out their website, " +
@@ -9,7 +10,8 @@ export const tipsData = [
     },
     {
         tipId: 2,
-        tipType: "Interview Prep: ",
+        tipType: "Interview Prep",
+        tipTitle: "What to wear?",
         description: "Dress appropriately: Make sure you "+
         "dress professionally for the interview. "+
         "This will show that you take the opportunity "+
@@ -17,7 +19,8 @@ export const tipsData = [
     },
     {
         tipId: 3,
-        tipType: "Interview Prep: ",
+        tipType: "Interview Prep",
+        tipTitle: "What is the job?",
         description: "Review the job description: "+
         "Make sure you understand the job requirements "+
         "and responsibilities. This will help you tailor"+
@@ -25,7 +28,8 @@ export const tipsData = [
     },
     {
         tipId: 4,
-        tipType: "Interview Prep: ",
+        tipType: "Interview Prep",
+        tipTitle: "Practice, Practice, Practice",
         description: "Practice common interview questions:"+
         " Review common interview questions and practice "+
         "your responses. This will help you feel more "+
@@ -33,7 +37,8 @@ export const tipsData = [
     },
     {
         tipId: 5,
-        tipType: "During the Interview: ",
+        tipType: "During the Interview",
+        tipTitle: "Pay attention during the interview",
         description: "Listen carefully: Pay close attention "+
         "to the interviewer's questions and listen carefully "+
         "to their responses. This will help you understand what "+
@@ -42,6 +47,7 @@ export const tipsData = [
     {
         tipId: 6,
         tipType: "During the Interview",
+        tipTitle: "Ignore distractions",
         description: "Stay focused: During the interview, "+
         "stay focused on the conversation and avoid distractions. "+
         "Make eye contact, nod and smile appropriately, and avoid "+
@@ -50,6 +56,7 @@ export const tipsData = [
     {
         tipId: 7,
         tipType: "During the Interview",
+        tipTitle: "Think before you speak",
         description: "Be concise: When answering questions, "+
         "be concise and to the point. Avoid rambling or going "+
         "off on tangents, as this can make you appear disorganized or unprepared."
@@ -57,54 +64,7 @@ export const tipsData = [
     {
         tipId: 8,
         tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 9,
-        tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 10,
-        tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 11,
-        tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 12,
-        tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 13,
-        tipType: "During the Interview",
-        description: "Highlight your strengths: Use the interview as "+
-        "an opportunity to highlight your strengths and accomplishments. "+
-        "Provide specific examples of your skills and experiences, "+
-        "and explain how they relate to the job you're applying for."
-    },
-    {
-        tipId: 14,
-        tipType: "During the Interview",
+        tipTitle: "Focus on your strengths",
         description: "Highlight your strengths: Use the interview as "+
         "an opportunity to highlight your strengths and accomplishments. "+
         "Provide specific examples of your skills and experiences, "+
