@@ -92,7 +92,7 @@ module.exports = buildSchema(`
 
     input FeedbackInput {
         score: Int!
-        category: String!
+        title: String!
         questionRating: Int!
     }
 

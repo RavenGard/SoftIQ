@@ -5,16 +5,6 @@ const { ObjectId } = require("mongodb");
 const { transformFeedback } = require("./merge");
 
 module.exports = {
-  // getFeedback: async () => {
-  //       try {
-  //           const feedback = await Feedback.find();
-  //           return feedback.map(feedback => {
-  //             return transformFeedback(feedback);
-  //           });
-  //         } catch (err) {
-  //           throw err;
-  //         }
-  //   },
   getFeedback: async (args) => {
     // Front end receives feedback information that is related to that question and that user.
     try {
@@ -30,11 +20,15 @@ module.exports = {
         question: fetchQuestion,
       });
 
+      if(!singleFeedback) {
+        throw new Error("You haven't answered this question yet.");
+      }
+
       // have to return it as an array of transform feedback since we aren't using the map function
       // schema expects an array of feedback fields
       return [transformFeedback(singleFeedback)];
     } catch (err) {
-      throw err;
+      throw(err);
     }
   },
   createFeedback: async (args) => {

@@ -1,6 +1,6 @@
 const Question = require("../models/question");
 const User = require("../models/user");
-const dateToString = require("../helpers/date");
+const { dateToString } = require("../helpers/date");
 
 const singleQuestion = async (questionId) => {
   try {
@@ -39,7 +39,7 @@ const transformFeedback = feedback => {
     _id: feedback.id,
     user: user.bind(this, feedback._doc.user),
     question: singleQuestion.bind(this, feedback._doc.question),
-    createdAt: dateToString(feedback._doc.createdAt),
+    createdAt: dateToString(feedback._doc.createdAt)
   };
 };
 
