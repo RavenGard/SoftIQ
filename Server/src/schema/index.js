@@ -99,6 +99,7 @@ module.exports = buildSchema(`
     type RootQuery {
         getQuestions: [Question!]!
         getFeedback(userId: ID!, questionId: ID!): [Feedback]!
+        getAllFeedback(userId: ID!): [Feedback]!
         getInitials(userId: ID!): Initials
         login(email: String!, password: String!): AuthData
     }
