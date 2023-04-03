@@ -36,7 +36,8 @@ const TipAccordion = () => {
                   {data.description}
                 </AccordionBody>
               </Accordion>
-              </div>
+              
+            </div>
         </div>
     </div>
   );
