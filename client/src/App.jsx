@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthContext from "./context/auth-context";
 import { Nav } from "./Components/Nav/Nav";
 import { Dashboard } from "./screens/Dashboard";
@@ -18,12 +18,24 @@ function App() {
   const login = (token, userId, tokenExpiration) => {
     setToken(token);
     setUserId(userId);
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
   };
 
   const logout = () => {
     setToken(null);
     setUserId(null);
   };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
+
+    if (storedToken && storedUserId) {
+      login(storedToken, storedUserId);
+    }
+  }, []);
 
   const location = useLocation();
 
