@@ -20,7 +20,7 @@ module.exports = {
         question: fetchQuestion,
       });
 
-      if(!singleFeedback) {
+      if (!singleFeedback) {
         throw new Error("You haven't answered this question yet.");
       }
 
@@ -28,7 +28,21 @@ module.exports = {
       // schema expects an array of feedback fields
       return [transformFeedback(singleFeedback)];
     } catch (err) {
-      throw(err);
+      throw err;
+    }
+  },
+
+  getAllFeedback: async (args) => {
+    try {
+      const uId = new ObjectId(args.userId);
+
+      const feedbacks = await Feedback.find({ user: uId });
+
+      return feedbacks.map((feedback) => {
+        return transformFeedback(feedback);
+      });
+    } catch (err) {
+      throw err;
     }
   },
   createFeedback: async (args) => {
