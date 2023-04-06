@@ -1,3 +1,10 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export const LoggedInDash = () => {
-  return <h1>LoggedInDash</h1>;
+  return (
+    <div>
+      <Link to="/interview">Go to Interview</Link>
+    </div>
+  );
 };
