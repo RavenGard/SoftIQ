@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 export const Nav = () => {
   const context = useContext(authContext);
 
+  const logout = context.logout;
   const userId = context.userId;
   const token = context.token;
   const [initials, setInitials] = useState("");
@@ -19,8 +20,6 @@ export const Nav = () => {
         }
       `,
     };
-
-    console.log("HERE " + userId);
 
     fetch("http://localhost:3000/softiq", {
       method: "POST",
@@ -108,20 +107,31 @@ export const Nav = () => {
           </Link>
           <div className="font-sans">{initials}</div>
         </div>
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          <Link to={"/signin"}>Login</Link>
-        </button>
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          <Link to={"/signup"}>Sign Up</Link>
-        </button>
+        {token ? (
+          <button
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            onClick={() => (setInitials(""), logout())}
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              <Link to={"/signin"}>Login</Link>
+            </button>
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              <Link to={"/signup"}>Sign Up</Link>
+            </button>
+          </>
+        )}
       </div>
-      
     </nav>
   );
 };

@@ -8,16 +8,14 @@ const LineChart = () => {
   const context = useContext(authContext);
 
   const userId = context.userId;
-
-  const [category, setCategory] = useState("");
-  const [month, setMonth] = useState("");
-  const [week, setWeek] = useState("");
-  const [feedback, setFeedback] = useState([]);
-  const [firstName, setFirstName] = useState("");
-
-  // getAllFeedback is returning undefinded. I need to get the data from the database and display it in the chart.
+  const [feedback, setFeedback] = useState([
+    { user: { firstName: "" }, month: "", category: "", score: 0, week: "" },
+  ]);
 
   useEffect(() => {
+    //TODO: Data could not be retrieved because we were trying to set single values to an array. We need to set the entire array to the state.
+    //TODO: Week 1 is plotted multiple times here on the x axis. We need to fix this. Need to be able to plot multiple points between week 1 and week 2, etc..
+
     let requestBody = {
       query: `
             query {
@@ -26,6 +24,7 @@ const LineChart = () => {
                     category
                     month
                     week
+                    score
                     user {
                         firstName
                     }
@@ -47,12 +46,11 @@ const LineChart = () => {
         return res.json();
       })
       .then((resData) => {
-        console.log("This is the res data: " + resData.data);
-        setCategory(resData.data.getAllFeedback.category);
-        setMonth(resData.data.getAllFeedback.month);
-        setWeek(resData.data.getAllFeedback.week);
-        setFeedback(resData.data.getAllFeedback);
-        setFirstName(resData.data.getAllFeedback.user.firstName);
+        setFeedback(
+          resData.data.getAllFeedback.filter(
+            (data) => data.category === "Eye Contact"
+          )
+        );
         console.log("This is the feedback: " + feedback);
       })
       .catch((err) => {
@@ -63,7 +61,7 @@ const LineChart = () => {
   const data = {
     datasets: [
       {
-        label: `${firstName}'s ${month} ${category} Feedback`,
+        label: `${feedback[0].user.firstName}'s ${feedback[0].month} ${feedback[0].category} Feedback`,
         data: feedback.map((data) => data.score),
         fill: false,
         backgroundColor: "rgb(75, 192, 192)",
@@ -76,7 +74,7 @@ const LineChart = () => {
     scales: {
       x: {
         type: "category",
-        labels: week,
+        labels: feedback.map((data) => data.week),
       },
       y: {
         beginAtZero: true,
