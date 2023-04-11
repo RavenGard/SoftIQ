@@ -96,6 +96,7 @@ module.exports = {
     });
     // console.log("This is the fetched question: " + fetchedQuestion);
     let createdFeedback;
+
     try {
       const result = await feedback.save();
       createdFeedback = transformFeedback(result);
