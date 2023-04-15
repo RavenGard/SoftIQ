@@ -4,7 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import authContext from "../../context/auth-context";
 import { useState, useContext } from "react";
 
-const LineChart = () => {
+const BarChart = () => {
   const context = useContext(authContext);
 
   const userId = context.userId;
@@ -165,4 +165,4 @@ const LineChart = () => {
 
 // export default ChartWithReport;
 
-export default LineChart;
+export default BarChart;
