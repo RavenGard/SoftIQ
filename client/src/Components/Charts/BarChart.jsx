@@ -1,24 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import authContext from "../../context/auth-context";
-import { useState, useContext } from "react";
 import Oops from "../../screens/Oops";
 
 // Moved calcAverageWeeklyScore to ChartHelper.js
 import { calcAverageWeeklyScore } from "./ChartHelper";
 
 const BarChart = () => {
+  // Gains access to the userId from the authContext. (Global store)
   const context = useContext(authContext);
-
   const userId = context.userId;
 
+  // State for the feedback array that will be used to plot the chart.
   const [feedback, setFeedback] = useState([]);
 
+  // This useEffect is used to fetch the feedback from the database. We also get the associated user's first name.
   useEffect(() => {
-    //TODO: Data could not be retrieved because we were trying to set single values to an array. We need to set the entire array to the state.
-    //TODO: Week 1 is plotted multiple times here on the x axis. We need to fix this. Need to be able to plot multiple points between week 1 and week 2, etc..
-
     let requestBody = {
       query: `
             query {
@@ -58,8 +56,8 @@ const BarChart = () => {
             )
           );
         } else {
+          // If the user has not created any feedback, we log a message to the console.
           console.log("No feedback yet!");
-          console.log();
         }
       })
       .catch((err) => {
@@ -67,14 +65,17 @@ const BarChart = () => {
       });
   }, []);
 
+  // This is the data object that is passed to the Bar component.
   let data;
 
+  // This checks if the feedback array has any elements. If it does, we set the data object.
   if (feedback.length > 0) {
+    // This is the data object being created only if there is feedback data to plot.
     data = {
       datasets: [
         {
           label: `${feedback[0].user.firstName}'s ${feedback[0].month} ${feedback[0].category} Feedback`,
-          data: calcAverageWeeklyScore(feedback),
+          data: calcAverageWeeklyScore(feedback), // returns an array of average scores for each week. (See ChartHelper.js)
           fill: false,
           backgroundColor: "rgb(75, 192, 192)",
           borderColor: "rgba(75, 192, 192, 0.2)",
@@ -83,6 +84,7 @@ const BarChart = () => {
     };
   }
 
+  // This is the options object that is passed to the Bar component.
   const options = {
     scales: {
       x: {
@@ -95,6 +97,7 @@ const BarChart = () => {
     },
   };
 
+  // This is the JSX that is returned by the BarChart component.
   return (
     <>
       {feedback.length !== 0 ? <Bar data={data} options={options} /> : <Oops />}
