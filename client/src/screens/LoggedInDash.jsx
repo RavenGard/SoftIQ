@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BarChart from "../Components/Charts/BarChart";
+
 
 export const LoggedInDash = () => {
   return (
@@ -12,6 +14,10 @@ export const LoggedInDash = () => {
           Go to Interview
         </Link>
       </div>
+      <div>
+      <h1>Line Chart Example</h1>
+      <BarChart />
+    </div>
     </div>
   );
 };
