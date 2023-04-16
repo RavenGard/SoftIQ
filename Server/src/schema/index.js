@@ -38,6 +38,14 @@ module.exports = buildSchema(`
         createdAt: String!
     }
 
+    type Tips {
+        _id: ID!
+        tipId: Int!
+        tipType: String!
+        tipTitle: String!
+        description: String!
+    }
+
     type AuthData {
         userId: ID!
         token: String!
@@ -96,18 +104,27 @@ module.exports = buildSchema(`
         questionRating: Int!
     }
 
+    input TipInput {
+        tipId: Int!
+        tipType: String!
+        tipTitle: String!
+        description: String!
+    }
+
     type RootQuery {
         getQuestions: [Question!]!
         getFeedback(userId: ID!, questionId: ID!): [Feedback]!
         getAllFeedback(userId: ID!): [Feedback]!
         getInitials(userId: ID!): Initials
         login(email: String!, password: String!): AuthData
+        getTips: [Tips!]!
     }
 
     type RootMutation {
         createQuestion(questionInput: QuestionInput): Question
         createUser(userInput: UserInput): User!
         createFeedback(feedbackInput: FeedbackInput, userId: ID!, questionId: ID!): Feedback
+        createTips(tipInput: TipInput): Tips
     }
 
     schema {
