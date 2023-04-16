@@ -1,6 +1,7 @@
 //https://stackblitz.com/edit/react-xjurfc?file=src%2FApp.js
 import React, { useRef, useState, useEffect } from "react";
 import { ReactMediaRecorder } from "react-media-recorder";
+import { Link } from "react-router-dom";
 
 // The VideoPreview component is responsible for displaying a video preview of the given stream
 const VideoPreview = ({ stream }) => {
@@ -28,6 +29,11 @@ const VideoPreview = ({ stream }) => {
   return <video ref={videoRef} width={500} height={500} autoPlay controls />;
 };
 
+// protype const question
+const Question = ({ question }) => {
+  return <h1 className="text-2xl font-bold mb-4">{question}</h1>;
+};
+
 export const Interview = () => {
   // recorded is a state variable that indicates whether a video has been recorded or not. setRecorded is a function
   // to update the recorded state.
@@ -44,6 +50,9 @@ export const Interview = () => {
   // The Interview component returns a container div with the ReactMediaRecorder component inside it.
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
+      {/* protype question */}
+      <Question question="What is your favorite color?" />
+
       <ReactMediaRecorder
         // The video prop indicates that the recording will be a video.
         video
@@ -111,18 +120,35 @@ export const Interview = () => {
                 </div>
               )}
 
-              {/* Show the "Try Again" button if a video is recorded */}
+              {/* Show the "Try Again" and "Continue" buttons if a video is recorded */}
               {recorded && (
-                <button
-                  className="block mx-auto mb-4 px-4 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition-colors duration-300"
-                  onClick={() => {
-                    setRecorded(false);
-                    setMediaUrl(null);
-                  }}
-                >
-                  Try Again
-                </button>
+                <>
+                  <div className="flex justify-center space-x-4 mt-4">
+                    {/* "Try Again" button */}
+                    <button
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                      onClick={() => {
+                        setRecorded(false);
+                        setMediaUrl(null);
+                      }}
+                    >
+                      Try Again
+                    </button>
+
+                    {/* "Continue" button */}
+                    <button>
+                      <Link
+                        to="/feedback"
+                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300"
+                      >
+                        Continue
+                      </Link>
+                    </button>
+                  </div>
+                </>
               )}
+
+              {/*Show the "Continue" button if a video is recorded*/}
             </div>
           );
         }}
