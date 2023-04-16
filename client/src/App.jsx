@@ -15,7 +15,7 @@ function App() {
   const [token, setToken] = useState(false);
   const [userId, setUserId] = useState(false);
 
-  const login = (token, userId, tokenExpiration) => {
+  const login = (token, userId) => {
     setToken(token);
     setUserId(userId);
 
