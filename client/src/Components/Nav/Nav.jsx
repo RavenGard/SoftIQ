@@ -35,7 +35,6 @@ export const Nav = () => {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
         setInitials(resData.data.getInitials.initials);
       })
       .catch((err) => {

@@ -39,6 +39,53 @@ export const Interview = () => {
   // to update the recorded state.
   const [recorded, setRecorded] = useState(false);
   const [mediaUrl, setMediaUrl] = useState(null);
+  const [question, setQuestion] = useState({});
+
+  useEffect(() => {
+    let requestBody = {
+      query: `
+        query {
+          getQuestions {
+            _id
+            questionDescription
+          }
+        }
+      `,
+    };
+
+    fetch("http://localhost:3000/softiq", {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error("Failed!");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        const length = resData.data.getQuestions.length;
+        console.log("This is the length: " + length);
+        const randomQuestion = resData.data.getQuestions[Math.floor(Math.random() * length)];
+        console.log("This is the random question: " + randomQuestion.questionDescription);
+
+        /* 
+         this code is redundant; randomQuestion is the object that can be used to access questionDescription ->
+         const questionInfo = {
+           questionId: randomQuestion._id,
+           questionDescription: randomQuestion.questionDescription
+         };
+         */
+        
+        setQuestion(randomQuestion);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleRecordingComplete = (blob) => {
     console.log("recording complete", blob);
@@ -51,7 +98,7 @@ export const Interview = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
       {/* protype question */}
-      <Question question="What is your favorite color?" />
+      <Question question={question.questionDescription} />
 
       <ReactMediaRecorder
         // The video prop indicates that the recording will be a video.
