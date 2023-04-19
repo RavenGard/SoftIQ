@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { ReactMediaRecorder } from "react-media-recorder";
 import { Link } from "react-router-dom";
+import InterviewFeedback from "../Components/InterviewFeedback/InterviewFeedback";
 
 // The VideoPreview component is responsible for displaying a video preview of the given stream
 const VideoPreview = ({ stream }) => {
@@ -40,6 +41,7 @@ export const Interview = () => {
   const [recorded, setRecorded] = useState(false);
   const [mediaUrl, setMediaUrl] = useState(null);
   const [question, setQuestion] = useState({});
+  const [provideFeedback, setProvideFeedback] = useState(false);
 
   useEffect(() => {
     let requestBody = {
@@ -69,8 +71,11 @@ export const Interview = () => {
       .then((resData) => {
         const length = resData.data.getQuestions.length;
         console.log("This is the length: " + length);
-        const randomQuestion = resData.data.getQuestions[Math.floor(Math.random() * length)];
-        console.log("This is the random question: " + randomQuestion.questionDescription);
+        const randomQuestion =
+          resData.data.getQuestions[Math.floor(Math.random() * length)];
+        console.log(
+          "This is the random question: " + randomQuestion.questionDescription
+        );
 
         /* 
          this code is redundant; randomQuestion is the object that can be used to access questionDescription ->
@@ -79,7 +84,7 @@ export const Interview = () => {
            questionDescription: randomQuestion.questionDescription
          };
          */
-        
+
         setQuestion(randomQuestion);
       })
       .catch((err) => {
@@ -116,7 +121,7 @@ export const Interview = () => {
           mediaBlobUrl,
         }) => {
           return (
-            <div className="max-w-md mx-auto my-8">
+            <div className="my-8 mx-auto">
               {/* /* Show the recorded video if it exists, otherwise show an empty div 
               
               mediaBlobUrl is a property provided by the ReactMediaRecorder component. It 
@@ -177,25 +182,26 @@ export const Interview = () => {
                       onClick={() => {
                         setRecorded(false);
                         setMediaUrl(null);
+                        setProvideFeedback(false);
                       }}
                     >
                       Try Again
                     </button>
 
                     {/* "Continue" button */}
-                    <button>
-                      <Link
-                        to="/feedback"
-                        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300"
-                      >
-                        Continue
-                      </Link>
+                    <button
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                      onClick={() => setProvideFeedback(true)}
+                    >
+                      Provide Feedback
                     </button>
                   </div>
                 </>
               )}
-
-              {/*Show the "Continue" button if a video is recorded*/}
+              <div className="flex justify-center">
+                {provideFeedback && <InterviewFeedback questionId={question._id}/>}
+                {/*Show the "Continue" button if a video is recorded*/}
+              </div>
             </div>
           );
         }}
@@ -203,3 +209,5 @@ export const Interview = () => {
     </div>
   );
 };
+
+// problems: recording is off center
