@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { CarouselData } from "../../assets/carouselData";
 import jobInterview from "../../assets/job-interview.png";
 
 class Carousel extends Component {

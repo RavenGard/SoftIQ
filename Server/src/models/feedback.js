@@ -28,6 +28,10 @@ const feedbackSchema = new Schema(
       type: String,
       required: true,
     },
+    day: {
+      type: String,
+      required: false
+    },
     questionRating: {
       type: Number,
       required: true,
