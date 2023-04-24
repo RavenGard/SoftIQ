@@ -33,15 +33,23 @@ const transformQuestion = (question) => {
 };
 
 // probably have to transform question and user to return all user and question info to mongodb
-const transformFeedback = feedback => {
+const transformFeedback = (feedback) => {
   return {
     ...feedback._doc,
     _id: feedback.id,
     user: user.bind(this, feedback._doc.user),
     question: singleQuestion.bind(this, feedback._doc.question),
-    createdAt: dateToString(feedback._doc.createdAt)
+    createdAt: dateToString(feedback._doc.createdAt),
+  };
+};
+
+const transformTips = (tip) => {
+  return {
+    ...tip._doc,
+    _id: tip.id,
   };
 };
 
 exports.transformQuestion = transformQuestion;
 exports.transformFeedback = transformFeedback;
+exports.transformTips = transformTips;

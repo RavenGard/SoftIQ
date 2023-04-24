@@ -2,6 +2,16 @@ const Question = require("../models/question");
 const { transformQuestion } = require("./merge");
 
 module.exports = {
+  questions: async (args) => {
+    try {
+      const questions = await Question.find();
+      return questions.map((questions) => {
+        return transformQuestion(questions);
+      });
+    } catch (err) {
+      throw err;
+    }
+  },
   getQuestions: async () => {
     try {
       const questions = await Question.find();
