@@ -33,7 +33,9 @@ module.exports = buildSchema(`
         user: User!
         question: Question!
         score: Int!
-        title: String!
+        category: String!
+        month: String!
+        week: String!
         questionRating: Int!
         createdAt: String!
     }
@@ -100,7 +102,7 @@ module.exports = buildSchema(`
 
     input FeedbackInput {
         score: Int!
-        title: String!
+        category: String!
         questionRating: Int!
     }
 
@@ -116,6 +118,7 @@ module.exports = buildSchema(`
         getFeedback(userId: ID!, questionId: ID!): [Feedback]!
         getAllFeedback(userId: ID!): [Feedback]!
         getInitials(userId: ID!): Initials
+        getAllFeedbackBasedOnCategory(userId: ID!, category: String!): [Feedback]!
         login(email: String!, password: String!): AuthData
         getTips: [Tips!]!
     }

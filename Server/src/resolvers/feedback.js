@@ -45,19 +45,58 @@ module.exports = {
       throw err;
     }
   },
+
+  // This does not work yet. Returns empty array.
+
+  getAllFeedbackBasedOnCategory: async (args) => {
+    try {
+      const uId = new ObjectId(args.userId);
+
+      const feedbacks = await Feedback.find({
+        _id: uId,
+        category: args.category,
+      });
+
+      return feedbacks.map((feedback) => {
+        return transformFeedback(feedback);
+      });
+    } catch (err) {
+      throw err;
+    }
+  },
+
   createFeedback: async (args) => {
     const fetchedUser = await User.findOne({ _id: args.userId });
     const fetchedQuestion = await Question.findOne({ _id: args.questionId });
+
+    const month = new Date().toLocaleString("default", { month: "long" });
+
+    let week;
+
+    const day = new Date().toLocaleString("default", { day: "numeric" });
+
+    if (day < 8) {
+      week = "Week 1";
+    } else if (day < 15) {
+      week = "Week 2";
+    } else if (day < 22) {
+      week = "Week 3";
+    } else if (day < 31) {
+      week = "Week 4";
+    }
 
     const feedback = new Feedback({
       user: fetchedUser,
       question: fetchedQuestion,
       score: args.feedbackInput.score,
-      title: args.feedbackInput.title,
+      category: args.feedbackInput.category,
+      month: month,
+      week: week,
       questionRating: args.feedbackInput.questionRating,
     });
     // console.log("This is the fetched question: " + fetchedQuestion);
     let createdFeedback;
+
     try {
       const result = await feedback.save();
       createdFeedback = transformFeedback(result);
