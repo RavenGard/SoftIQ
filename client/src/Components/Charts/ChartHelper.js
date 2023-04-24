@@ -15,7 +15,6 @@ export const calcAverageWeeklyScore = (feedback) => {
   feedback.forEach((element) => {
     if (element.week === "Week 1") {
       week1Sum += element.score;
-      console.log("This is the element.score: " + element.score);
       week1Count++;
     } else if (element.week === "Week 2") {
       week2Sum += element.score;
