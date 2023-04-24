@@ -36,6 +36,7 @@ module.exports = buildSchema(`
         category: String!
         month: String!
         week: String!
+        day: String!
         questionRating: Int!
         createdAt: String!
     }

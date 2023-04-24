@@ -100,7 +100,7 @@ const BarChart = () => {
   // This is the JSX that is returned by the BarChart component.
   return (
     <>
-      {feedback.length !== 0 ? <Bar data={data} options={options} /> : <Oops />}
+    {feedback.length !== 0 ? <Bar data={data} options={options} /> : <Oops />}
     </>
   );
 };

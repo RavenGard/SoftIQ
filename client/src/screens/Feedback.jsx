@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import BarChart from "../Components/Charts/BarChart";
-
+import QuestionList from "../Components/Charts/QuestionList";
 export const Feedback = () => {
   const [byDay, setByDay] = useState(false);
   return (
+    //
     <div className="grid md:grid-cols-2 grid-cols-1 gap-4 p-4">
       <div className="w-full mt-20 bg-gray-100 rounded-lg p-4 border">
         <BarChart byDay={byDay} />
@@ -19,6 +20,11 @@ export const Feedback = () => {
           </button>
         </div>
       </div>
+     
+      <div className="pt-1 w-full mt-20 bg-gray-800 rounded-lg px-2 py-1 border overflow-scroll">
+      <QuestionList/>
+      </div>
+     
     </div>
   );
 };

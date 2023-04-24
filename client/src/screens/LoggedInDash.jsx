@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BarChart from "../Components/Charts/BarChart";
+import QuestionList from "../Components/Charts/QuestionList";
 
 
 export const LoggedInDash = () => {
@@ -16,7 +17,12 @@ export const LoggedInDash = () => {
       </div>
       <div>
       <h1>Line Chart Example</h1>
-      <BarChart />
+      <div>
+        <BarChart />
+        {/* <QuestionList/> */}
+      </div>
+      
+
     </div>
     </div>
   );
