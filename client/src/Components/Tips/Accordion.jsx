@@ -3,13 +3,12 @@
  */
 
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import { tipsData } from "../../assets/tips";
 
 
 function Icon({ id, open }) {
@@ -32,13 +31,51 @@ function Icon({ id, open }) {
 const TipAccordion = () => {
 
   const [open, setOpen] = useState(0);
+  const[tips, setTips] = useState([]);
 
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
 
+  useEffect(() => {
+
+    let requestBody = {
+      query: `
+            query {
+                getTips{
+                    tipId
+                    tipType
+                    tipTitle
+                    description
+                }
+            }
+          `,
+    };
+    fetch("http://localhost:3000/softiq", {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200 && res.status !== 201) {
+          console.log("stuck")
+          throw new Error("Failed!");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+          console.log(resData.data.getTips);
+          setTips( resData.data.getTips);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   // idea: put the map function up hear so then I can return a new accordion for each tip.
-  const theAccordion = tipsData.map((data, key) => { 
+  const theAccordion = tips.map((data, key) => { 
   return (
     <div key={key}>
         <div class=" flex flex-col items-center">
