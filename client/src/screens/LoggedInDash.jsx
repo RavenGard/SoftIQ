@@ -98,40 +98,52 @@ export const LoggedInDash = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-2 min-h-screen flex items-center justify-center bg-gray-100">
-        <div>
-          <div className="mx-20 bg-slate-300 p-10 border-solid border-slate-600 rounded-lg">
-            <h3 className="text-4xl font-bold text-gray-800">
-              Interview Tip of The Day
-            </h3>
-            {randomTip && <h1 className="py-5">{randomTip.description}</h1>}
-          </div>
-          <div className="mx-20 mt-20 bg-slate-300 p-10 border-solid border-slate-600 rounded-lg">
-            <h3 className="text-4xl font-bold text-gray-800">
-              Question of The Day
-            </h3>
-            {/* need to create a blank interview page that allows the user to answer this question */}
-            <Link to={"/interview"}>
-              {question && (
-                <h1 className="py-5">{question.questionDescription}</h1>
-              )}
-            </Link>
+      <div className="grid grid-cols-2 min-h-screen max-h- flex items-center justify-center bg-gray-100">
+        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-20 border-solid border-slate-600 rounded-lg">
+          <h3 className="text-4xl font-bold text-gray-800">
+            Interview Tip of The Day
+          </h3>
+          {randomTip && <h1 className="py-5">{randomTip.description}</h1>}
+        </div>
+
+        <div className="col-start-2 mx-5 bg-white shadow-md rounded-lg p-6 h-3/5">
+          <div className="relative h-full w-full">
+            <iframe
+              className="absolute top-0 right-0 w-full h-full"
+              src="https://www.youtube.com/embed/kayOhGRcNt4"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 
-        <div className="mr-40 ml-10 bg-white shadow-md rounded-lg p-6 h-2/5">
+        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-20 border-solid border-slate-600 rounded-lg">
+          <h3 className="text-4xl font-bold text-gray-800">
+            Question of The Day
+          </h3>
+          {/* need to create a blank interview page that allows the user to answer this question */}
+          <Link to={"/interview"}>
+            {question && (
+              <h1 className="py-5">{question.questionDescription}</h1>
+            )}
+          </Link>
+        </div>
+
+        <div className="col-start-2 mr-5 ml-5 bg-white shadow-md rounded-lg p-4 h-3/5 ">
           <BarChart />
           {/* <QuestionList/> */}
         </div>
+      </div>
 
-        <div className="flex justify-center bg-gray-100 pb-20">
-          <Link
-            to="/interview"
-            className="flex justify-center w-80 text-center py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors duration-300"
-          >
-            Go to Interview
-          </Link>
-        </div>
+      <div className="flex justify-center bg-gray-100 pb-20">
+        <Link
+          to="/interview"
+          className="flex justify-center w-80 text-center py-2 bg-gray-700 text-white font-semibold rounded-md hover:bg-blue-600 transition-colors duration-300"
+        >
+          Go to Interview
+        </Link>
       </div>
     </div>
   );
