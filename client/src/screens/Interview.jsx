@@ -32,7 +32,11 @@ const VideoPreview = ({ stream }) => {
 
 // protype const question
 const Question = ({ question }) => {
-  return <h1 className="text-2xl font-bold mb-4">{question}</h1>;
+  return (
+    <>
+      <h1 className="text-3xl font-bold">{question}</h1>
+    </>
+  );
 };
 
 export const Interview = () => {
@@ -103,7 +107,9 @@ export const Interview = () => {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
       {/* protype question */}
-      <Question question={question.questionDescription} />
+      <div className="mt-20 w-1/2 text-gray-700 flex items-center justify-center bg-slate-200 p-5 mb-4 rounded-lg border-solid border-2 border-slate-300">
+        <Question question={question.questionDescription} />
+      </div>
 
       <ReactMediaRecorder
         // The video prop indicates that the recording will be a video.
@@ -149,7 +155,7 @@ export const Interview = () => {
               {/* Show the "Start Recording" button if not recording and no video recorded */}
               {status !== "recording" && recorded === false && (
                 <button
-                  className="block mx-auto mb-4 px-10 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-300"
+                  className="block mx-auto mb-4 px-10 py-2 bg-slate-700 text-white rounded-full hover:bg-blue-600 transition-colors duration-300"
                   onClick={startRecording}
                 >
                   Start Recording
@@ -160,7 +166,7 @@ export const Interview = () => {
               {status === "recording" && (
                 <div>
                   <button
-                    className="block mx-auto mb-4 px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-300"
+                    className="block mx-auto mt-5 mb-4 px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-300"
                     onClick={() => {
                       stopRecording();
                       setRecorded(true);
@@ -178,7 +184,7 @@ export const Interview = () => {
                   <div className="flex justify-center space-x-4 mt-4">
                     {/* "Try Again" button */}
                     <button
-                      className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                      className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
                       onClick={() => {
                         setRecorded(false);
                         setMediaUrl(null);
@@ -190,7 +196,7 @@ export const Interview = () => {
 
                     {/* "Continue" button */}
                     <button
-                      className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
+                      className="px-4 py-2 bg-indigo-400 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300"
                       onClick={() => setProvideFeedback(true)}
                     >
                       Provide Feedback
@@ -199,7 +205,9 @@ export const Interview = () => {
                 </>
               )}
               <div className="flex justify-center">
-                {provideFeedback && <InterviewFeedback questionId={question._id}/>}
+                {provideFeedback && (
+                  <InterviewFeedback questionId={question._id} />
+                )}
                 {/*Show the "Continue" button if a video is recorded*/}
               </div>
             </div>
