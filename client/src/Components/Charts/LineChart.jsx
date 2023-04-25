@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import authContext from "../../context/auth-context";
 import Oops from "../../screens/Oops";
@@ -7,7 +7,7 @@ import Oops from "../../screens/Oops";
 // Moved calcAverageWeeklyScore to ChartHelper.js
 import { calcAverageWeeklyScore } from "./ChartHelper";
 
-const BarChart = () => {
+const LineChart = () => {
   // Gains access to the userId from the authContext. (Global store)
   const context = useContext(authContext);
   const userId = context.userId;
@@ -25,6 +25,7 @@ const BarChart = () => {
                     category
                     month
                     week
+                    day
                     score
                     user {
                         firstName
@@ -75,7 +76,10 @@ const BarChart = () => {
       datasets: [
         {
           label: `${feedback[0].user.firstName}'s ${feedback[0].month} ${feedback[0].category} Feedback`,
-          data: calcAverageWeeklyScore(feedback), // returns an array of average scores for each week. (See ChartHelper.js)
+          data: feedback.map((data) => {
+            console.log(data.score);
+            return data.score;
+          }), // returns an array of average scores for each week. (See ChartHelper.js)
           fill: false,
           backgroundColor: "rgb(75, 192, 192)",
           borderColor: "rgba(75, 192, 192, 0.2)",
@@ -89,7 +93,10 @@ const BarChart = () => {
     scales: {
       x: {
         type: "category",
-        labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        labels: feedback.map((data) => {
+          console.log(data.day);
+          return data.day;
+        }),
       },
       y: {
         beginAtZero: true,
@@ -100,9 +107,13 @@ const BarChart = () => {
   // This is the JSX that is returned by the BarChart component.
   return (
     <>
-      {feedback.length !== 0 ? <Bar data={data} options={options} /> : <Oops />}
+      {feedback.length !== 0 ? (
+        <Line data={data} options={options} />
+      ) : (
+        <Oops />
+      )}
     </>
   );
 };
 
-export default BarChart;
+export default LineChart;

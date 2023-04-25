@@ -1,13 +1,11 @@
-import { React, useState,useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 
 export default function Carousel2() {
-
   const [curr, setCurr] = useState(0);
-  const [tips, setTips] = useState([])
+  const [tips, setTips] = useState([]);
 
   useEffect(() => {
-
     let requestBody = {
       query: `
             query {
@@ -34,14 +32,13 @@ export default function Carousel2() {
         return res.json();
       })
       .then((resData) => {
-          console.log(resData.data.getTips);
-          setTips( resData.data.getTips);
+        console.log(resData.data.getTips);
+        setTips(resData.data.getTips);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
 
   const prev = () => {
     setCurr((curr) => (curr === 0 ? tip.length - 1 : curr - 1));
@@ -63,14 +60,14 @@ export default function Carousel2() {
   const tip = tips.map((data, key) => {
     return (
       <div classname="flex p-2" key={key}>
-        <div>{data.tipType}</div>
+        <div className="text-3xl mb-5">{data.tipType}</div>
         {data.description}
       </div>
     );
   });
 
   return (
-    <div class="flex pt-10 justify-center h-36 transition-transform ease-out duration-500">
+    <div class="flex mt-10 justify-center h-36 transition-transform ease-out duration-500">
       {/* {tipsData.map((data, key) => {
               return ( */}
       <>
@@ -90,10 +87,7 @@ export default function Carousel2() {
         </div>
       </>
 
-      <button
-        className="px-2"
-        onClick={next}
-      >
+      <button className="px-2" onClick={next}>
         <ChevronRight size={30} />
       </button>
     </div>

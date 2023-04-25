@@ -11,9 +11,11 @@ export const Tips = () => {
         
       <Carousel/> */}
       {/* <CardComponent/> */}
-      <Carousel2/>
+      <div className="p-10">
+        <Carousel2 />
+      </div>
       <div class=" flex flex-col justify-center">
-        <TipAccordion/>
+        <TipAccordion />
       </div>
     </div>
   );

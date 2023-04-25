@@ -99,21 +99,12 @@ export const Nav = () => {
               Feedback
             </a>
           </Link>
-          <Link to={"/contact"}>
-            <a
-              href="#responsive-header"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
-              //"block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
-            >
-              Contact
-            </a>
-          </Link>
-          <div className="font-sans">{initials}</div>
+          <div className="font-sans text-lg text-gray-100">{initials}</div>
         </div>
         {token ? (
           <button
             type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white bg-slate-500 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none dark:focus:ring-blue-800"
             onClick={() => (setInitials(""), logout())}
           >
             Logout
