@@ -1,11 +1,12 @@
-import demoData from "../assets/demoDataPic.jpg";
+import FeedbackChart from "../assets/FeedbackChart.png";
+import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       <header className="bg-white shadow"></header>
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <div className="aspect-w-16 aspect-h-9">
             <iframe
               width="1000"
@@ -17,11 +18,11 @@ export const Dashboard = () => {
               allowfullscreen
             ></iframe>
           </div>
-          <div className="bg-white rounded-lg shadow px-4 py-5 sm:p-6 mb-8">
-            <h2 className="text-lg font-medium leading-6 text-gray-900">
+          <div className="bg-white flex flex-col items-center rounded-lg shadow px-4 mt-10 py-5 sm:p-6 mb-8">
+            <h2 className="text-3xl font-medium leading-6 text-gray-900 mb-10">
               Track your scores and review your feedback!
             </h2>
-            <img src={demoData} alt="score data and feedback" />
+            <img src={FeedbackChart} alt="score data and feedback" />
           </div>
         </div>
         <div className="bg-white rounded-lg shadow px-4 py-5 sm:p-6 mb-8">
@@ -47,16 +48,16 @@ export const Dashboard = () => {
             What's your biggest achievement?
           </p>
         </div>
-        <div className="px-4 py-6 sm:px-0">
+        <div className="px-4 py-6 mt-10 sm:px-0">
           <div className="flex justify-center items-center mb-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
+            <Link to={"/signin"}>
+              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Log In
+              </button>
+            </Link>
           </div>
-          <div className="flex justify-center items-center mb-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
-          </div>
-
-          <div className="flex justify-center items-center mb-8">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"></button>
+          <div className="flex justify-center items-center mb-4 text-blue-800 text-2xl">
+            <Link to={"/signup"}>New Here? Sign Up!</Link>
           </div>
         </div>
       </main>
