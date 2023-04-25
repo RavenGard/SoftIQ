@@ -99,14 +99,14 @@ export const LoggedInDash = () => {
   return (
     <div>
       <div className="grid grid-cols-2 min-h-screen max-h- flex items-center justify-center bg-gray-100">
-        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-20 border-solid border-slate-600 rounded-lg">
+        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-2 border-solid border-slate-600 rounded-lg">
           <h3 className="text-4xl font-bold text-gray-800">
             Interview Tip of The Day
           </h3>
           {randomTip && <h1 className="py-5">{randomTip.description}</h1>}
         </div>
 
-        <div className="col-start-2 mx-5 bg-white shadow-md rounded-lg p-6 h-3/5">
+        <div className="col-start-2 mx-5 bg-white shadow-md rounded-lg p-5 h-5/6">
           <div className="relative h-full w-full">
             <iframe
               className="absolute top-0 right-0 w-full h-full"
@@ -119,7 +119,7 @@ export const LoggedInDash = () => {
           </div>
         </div>
 
-        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-20 border-solid border-slate-600 rounded-lg">
+        <div className="col-start-1 col-end-2 mx-5 bg-slate-300 p-2 border-solid border-slate-600 rounded-lg">
           <h3 className="text-4xl font-bold text-gray-800">
             Question of The Day
           </h3>
