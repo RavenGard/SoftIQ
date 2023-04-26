@@ -75,15 +75,15 @@ module.exports = {
 
     const day = new Date().toLocaleString("default", { day: "numeric" });
 
-    // if (day < 8) {
-    //   week = "Week 1";
-    // } else if (day < 15) {
-    //   week = "Week 2";
-    // } else if (day < 22) {
-    //   week = "Week 3";
-    // } else if (day < 31) {
-    //   week = "Week 4";
-    // }
+    if (day < 8) {
+      week = "Week 1";
+    } else if (day < 15) {
+      week = "Week 2";
+    } else if (day < 22) {
+      week = "Week 3";
+    } else if (day < 31) {
+      week = "Week 4";
+    }
 
     const feedback = new Feedback({
       user: fetchedUser,
